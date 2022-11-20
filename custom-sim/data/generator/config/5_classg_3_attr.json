@@ -1,0 +1,62 @@
+{
+  "class": ["Deterministic", "Image"],
+  "attributes": {
+    "features": ["class", "size_x", "size_y", "loc_x", "loc_z", "yaw"],
+    "mutable": ["yaw", "loc_x", "loc_z"],
+    "dataset": "mnist",
+    "immutable": true,
+    "directed" : true,
+    "size": [32,32],
+    "num_samples":1000,
+    "asset_dir"  : "data/assets/mnist/train/",
+    "build_path" : "data/datagen/scenes/unity/3d_scene_multi/Builds/3dv2_Data",
+    "size_y": ["Deterministic", 32, 0, 32],
+    "size_x": ["Deterministic", 32, 0, 32],
+    "loc_x":  ["Deterministic", 0, 0, 32],
+    "loc_z":  ["Deterministic", 0, 0, 32],
+    "yaw":    ["Deterministic", 0, 0, 360]
+  },
+  "num_child" : ["Deterministic", 2],
+  "child": [
+    {
+      "class": ["Deterministic", "Background"],
+      "attributes": {
+        "immutable": true,
+        "size_y": ["Deterministic", 32, 0, 32],
+        "size_x": ["Deterministic", 32, 0, 32],
+        "loc_x":  ["Deterministic", 0, 0, 32],
+        "loc_z":  ["Deterministic", 0, 0, 32],
+        "yaw":  ["Deterministic", 0, 0, 360]
+      },
+      "num_child" : ["Deterministic", 0],
+      "child": []
+    },
+    {
+      "class": ["Deterministic","Scene"],
+      "attributes": {
+        "immutable": true,
+        "size_y": ["Deterministic", 32, 0, 32],
+        "size_x": ["Deterministic", 32, 0, 32],
+        "loc_x":  ["Deterministic", 0, 0, 32],
+        "loc_z":  ["Deterministic", 0, 0, 32],
+        "yaw":    ["Deterministic", 0, 0, 360]
+       },
+      "num_child" : ["Deterministic", 1],
+      "child": [
+        {
+          "class":["Random", [0,1,2,3,4]],
+          "attributes": {
+            "immutable": false,
+            "size_y": ["Deterministic", 28, 0, 32],
+            "size_x": ["Deterministic", 28, 0, 32],
+            "loc_x": ["Gaussian" , 100, 5, 200],
+            "loc_z": ["Gaussian" , 100, 5, 200],
+            "yaw": ["Gaussian", 180, 10, 360]
+          },
+          "num_child" : ["Deterministic", 0],
+          "child": []
+        }
+      ]
+    }
+  ]
+}

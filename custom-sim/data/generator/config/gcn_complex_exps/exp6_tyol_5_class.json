@@ -1,0 +1,129 @@
+{
+  "class": ["Deterministic", "Image"],
+  "attributes": {
+    "features": ["class", "size_x", "size_y", "loc_x", "loc_y", "pitch","yaw", "intensity", "roughness"],
+    "mutable": ["loc_x", "loc_y", "pitch", "yaw", "intensity", "roughness"],
+    "dataset": "mnist",
+    "immutable": true,
+    "directed" : true,
+    "size": [32,32],
+    "num_samples":1000,
+    "asset_dir"  : "data/assets/mnist/train/",
+    "output_dir" : "data/datagen/mnist/init_rot/",
+    "size_y": ["Deterministic", 32, 0, 32],
+    "size_x": ["Deterministic", 32, 0, 32],
+    "loc_x":  ["Deterministic", 0, 0, 32],
+    "loc_y":  ["Deterministic", 0, 0, 32],
+    "pitch":    ["Deterministic", 0, 0, 360],
+    "yaw":    ["Deterministic", 0, 0, 360],
+    "intensity":    ["Deterministic", 0, 0, 1000],
+    "texture":["Deterministic", 0, 0, 255],
+    "roughness":["Deterministic", 0, 0, 10]
+  },
+  "num_child" : ["Deterministic", 2],
+  "child": [
+    {
+      "class": ["Deterministic", "Background"],
+      "attributes": {
+        "immutable": true,
+        "size_y": ["Deterministic", 32, 0, 32],
+        "size_x": ["Deterministic", 32, 0, 32],
+        "loc_x":  ["Deterministic", 0, 0, 32],
+        "loc_y":  ["Deterministic", 0, 0, 32],
+        "pitch":  ["Deterministic", 0, 0, 360],
+        "yaw":    ["Deterministic", 0, 0, 360],
+        "intensity":    ["Deterministic", 0, 0, 1000],
+        "texture":["Gaussian", 0, 5, 255],
+        "roughness":["Deterministic", 0, 0, 10]
+      },
+      "num_child" : ["Deterministic", 0],
+      "child": []
+    },
+    {
+      "class": ["Deterministic","Scene"],
+      "attributes": {
+        "immutable": true,
+        "size_y": ["Deterministic", 32, 0, 32],
+        "size_x": ["Deterministic", 32, 0, 32],
+        "loc_x":  ["Deterministic", 0, 0, 32],
+        "loc_y":  ["Deterministic", 0, 0, 32],
+        "pitch":    ["Deterministic", 0, 0, 360],
+        "yaw":    ["Deterministic", 0, 0, 360],
+        "intensity":    ["Deterministic", 0, 0, 1000],
+        "texture":["Deterministic", 0, 0, 255],
+        "roughness":["Deterministic", 0, 0, 10]    
+       },
+      "num_child" : ["Deterministic", 4],
+      "child": [
+        {
+          "class":["Random", [0, 1, 2, 3, 4]],
+          "attributes": {
+            "immutable": false,
+            "size_y": ["Deterministic", 28, 0, 32],
+            "size_x": ["Deterministic", 28, 0, 32],
+            "loc_x": ["Deterministic" , 16, 0, 32],
+            "loc_y": ["Deterministic" , 16, 0, 32],
+            "pitch": ["Gaussian", 0, 10, 360],
+            "yaw": ["Gaussian", 0, 10, 360],
+            "intensity":    ["Deterministic", 0, 0, 1000],
+            "texture": "Random",
+            "roughness":["Deterministic", 0, 0, 10]
+          },
+          "num_child" : ["Deterministic", 0],
+          "child": []
+        },
+        {
+          "class":["Deterministic","Camera"],
+          "attributes": {
+            "immutable": false,
+            "size_y": ["Deterministic", 28, 0, 32],
+            "size_x": ["Deterministic", 28, 0, 32],
+            "loc_x": ["Deterministic" , 16, 0, 32],
+            "loc_y": ["Deterministic" , 16, 0, 32],
+            "pitch": ["Gaussian", 0, 10, 180],
+            "yaw": ["Gaussian", 0, 10, 180],
+            "intensity": ["Deterministic", 0, 0, 1000],
+            "texture": "Random",
+            "roughness":["Deterministic", 0, 0, 10]
+          },
+          "num_child" : ["Deterministic", 0],
+          "child": []
+        },
+        {
+          "class":["Deterministic","Light"],
+          "attributes": {
+            "immutable": false,
+            "size_y": ["Deterministic", 28, 0, 32],
+            "size_x": ["Deterministic", 28, 0, 32],
+            "loc_x": ["Deterministic" , 16, 0, 32],
+            "loc_y": ["Deterministic" , 16, 0, 32],
+            "pitch": ["Gaussian", 0, 10, 180],
+            "yaw": ["Gaussian", 0, 10, 180],
+            "intensity": ["Gaussian", 800,100, 1000],
+            "texture": "Random",
+            "roughness":["Deterministic", 0, 0, 10]
+          },
+          "num_child" : ["Deterministic", 0],
+          "child": []
+        },
+        {
+          "class":["Random", [0, 1, 2]],
+          "attributes": {
+            "immutable": false,
+            "size_y": ["Deterministic", 28, 0, 32],
+            "size_x": ["Deterministic", 28, 0, 32],
+            "loc_x": ["Deterministic" , 16, 0, 32],
+            "loc_y": ["Deterministic" , 16, 0, 32],
+            "pitch": ["Deterministic", 0, 10, 180],
+            "yaw": ["Deterministic", 0, 10, 180],
+            "intensity": ["Deterministic", 0,0, 1000],
+            "texture": "Random",
+            "roughness":["Gaussian", 800, 100, 1000]
+          },
+          "num_child" : ["Deterministic", 0],
+          "child": []
+        }
+      ]
+    }
+  ]
+}

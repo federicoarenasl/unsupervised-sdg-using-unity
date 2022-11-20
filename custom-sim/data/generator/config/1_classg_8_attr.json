@@ -1,0 +1,121 @@
+{
+  "class": ["Deterministic", "Image"],
+  "attributes": {
+    "features": ["class", "size_x", "size_y", 
+                  "loc_x", "loc_z", "yaw", 
+                  "pitch", "roll", "intensity", 
+                  "camera_pitch", "camera_roll"],
+    "mutable": ["yaw", "pitch", "roll", "loc_x", "loc_z", "intensity", "camera_pitch", "camera_roll"],
+    "dataset": "mnist",
+    "immutable": true,
+    "directed" : true,
+    "size": [32,32],
+    "num_samples":1000,
+    "asset_dir"  : "data/assets/mnist/train/",
+    "build_path" : "data/datagen/scenes/unity/3d_scene_v4/Builds/3dv1_Data",
+    "size_y": ["Deterministic", 32, 0, 32],
+    "size_x": ["Deterministic", 32, 0, 32],
+    "loc_x":  ["Deterministic", 0, 0, 32],
+    "loc_z":  ["Deterministic", 0, 0, 32],
+    "yaw":    ["Deterministic", 0, 0, 360],
+    "pitch":    ["Deterministic", 0, 0, 360],
+    "roll":    ["Deterministic", 0, 0, 360],
+    "intensity":    ["Deterministic", 0, 0, 1],
+    "camera_pitch":    ["Deterministic", 0, 0, 360],
+    "camera_roll":    ["Deterministic", 0, 0, 360]
+  },
+  "num_child" : ["Deterministic", 2],
+  "child": [
+    {
+      "class": ["Deterministic", "Background"],
+      "attributes": {
+        "immutable": true,
+        "size_y": ["Deterministic", 32, 0, 32],
+        "size_x": ["Deterministic", 32, 0, 32],
+        "loc_x":  ["Deterministic", 0, 0, 32],
+        "loc_z":  ["Deterministic", 0, 0, 32],
+        "yaw":  ["Deterministic", 0, 0, 360],
+        "pitch":    ["Deterministic", 0, 0, 360],
+        "roll":    ["Deterministic", 0, 0, 360],
+        "intensity":    ["Deterministic", 0, 0, 1],
+        "camera_pitch":    ["Deterministic", 0, 0, 360],
+        "camera_roll":    ["Deterministic", 0, 0, 360]
+      },
+      "num_child" : ["Deterministic", 0],
+      "child": []
+    },
+    {
+      "class": ["Deterministic","Scene"],
+      "attributes": {
+        "immutable": true,
+        "size_y": ["Deterministic", 32, 0, 32],
+        "size_x": ["Deterministic", 32, 0, 32],
+        "loc_x":  ["Deterministic", 0, 0, 32],
+        "loc_z":  ["Deterministic", 0, 0, 32],
+        "yaw":    ["Deterministic", 0, 0, 360],
+        "pitch":    ["Deterministic", 0, 0, 360],
+        "roll":    ["Deterministic", 0, 0, 360],
+        "intensity":    ["Deterministic", 0, 0, 1],
+        "camera_pitch":    ["Deterministic", 0, 0, 360],
+        "camera_roll":    ["Deterministic", 0, 0, 360]
+       },
+      "num_child" : ["Deterministic", 3],
+      "child": [
+        {
+          "class":["Random", [1]],
+          "attributes": {
+            "immutable": false,
+            "size_y": ["Deterministic", 28, 0, 32],
+            "size_x": ["Deterministic", 28, 0, 32],
+            "loc_x": ["Gaussian" , 100, 5, 200],
+            "loc_z": ["Gaussian" , 100, 5, 200],
+            "yaw": ["Gaussian", 180, 10, 360],
+            "pitch": ["Gaussian", 360, 10, 720],
+            "roll":  ["Gaussian", 360, 10, 720],
+            "intensity":    ["Deterministic", 0, 0, 1],
+            "camera_pitch":    ["Deterministic", 90, 0, 360],
+            "camera_roll":    ["Deterministic", 0, 0, 360]
+          },
+          "num_child" : ["Deterministic", 0],
+          "child": []
+        },
+        {
+          "class":["Deterministic", "Light"],
+          "attributes": {
+            "immutable": false,
+            "size_y": ["Deterministic", 28, 0, 32],
+            "size_x": ["Deterministic", 28, 0, 32],
+            "loc_x": ["Deterministic" , 0, 0, 1],
+            "loc_z": ["Deterministic" , 0, 0, 1],
+            "yaw": ["Deterministic", 0, 0, 1],
+            "pitch": ["Deterministic", 0, 0, 1],
+            "roll":  ["Deterministic", 0, 0, 1],
+            "intensity":    ["Gaussian", 0.5, 0.01, 2],
+            "camera_pitch":    ["Deterministic", 0, 0, 360],
+            "camera_roll":    ["Deterministic", 0, 0, 360]
+          },
+          "num_child" : ["Deterministic", 0],
+          "child": []
+        },
+        {
+          "class":["Deterministic", "Camera"],
+          "attributes": {
+            "immutable": false,
+            "size_y": ["Deterministic", 28, 0, 32],
+            "size_x": ["Deterministic", 28, 0, 32],
+            "loc_x": ["Deterministic" , 0, 0, 1],
+            "loc_z": ["Deterministic" , 0, 0, 1],
+            "yaw": ["Deterministic", 0, 0, 1],
+            "pitch": ["Deterministic", 0, 0, 1],
+            "roll":  ["Deterministic", 0, 0, 1],
+            "intensity":    ["Deterministic", 0, 0, 1],
+            "camera_pitch":    ["Gaussian", 65, 10, 720],
+            "camera_roll":    ["Gaussian", 360, 10, 720]
+          },
+          "num_child" : ["Deterministic", 0],
+          "child": []
+        }
+      ]
+    }
+  ]
+}

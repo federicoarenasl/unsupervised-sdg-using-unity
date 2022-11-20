@@ -1,0 +1,65 @@
+{
+  "class": ["Deterministic", "Image"],
+  "attributes": {
+    "features": ["class", "size_x", "size_y", "loc_x", "loc_y", "yaw"],
+    "mutable": ["yaw"],
+    "dataset": "mnist",
+    "immutable": true,
+    "directed" : true,
+    "size": [32,32],
+    "num_samples":1000,
+    "asset_dir"  : "data/assets/mnist/train/",
+    "blender_path" : "/usr/bin/blender",
+    "blender_file_path": "data/datagen/scenes/scene_1_obj.blend",
+    "blender_script_path": "data/renderer/tyol_blender.py",
+    "target_image_dir": "logs/images/tyol/exp_2",
+    "size_y": ["Deterministic", 32, 0, 32],
+    "size_x": ["Deterministic", 32, 0, 32],
+    "loc_x":  ["Deterministic", 0, 0, 32],
+    "loc_y":  ["Deterministic", 0, 0, 32],
+    "yaw":    ["Deterministic", 0, 0, 360]
+  },
+  "num_child" : ["Deterministic", 2],
+  "child": [
+    {
+      "class": ["Deterministic", "Background"],
+      "attributes": {
+        "immutable": true,
+        "size_y": ["Deterministic", 32, 0, 32],
+        "size_x": ["Deterministic", 32, 0, 32],
+        "loc_x":  ["Deterministic", 0, 0, 32],
+        "loc_y":  ["Deterministic", 0, 0, 32],
+        "yaw":  ["Deterministic", 0, 0, 360]
+      },
+      "num_child" : ["Deterministic", 0],
+      "child": []
+    },
+    {
+      "class": ["Deterministic","Scene"],
+      "attributes": {
+        "immutable": true,
+        "size_y": ["Deterministic", 32, 0, 32],
+        "size_x": ["Deterministic", 32, 0, 32],
+        "loc_x":  ["Deterministic", 0, 0, 32],
+        "loc_y":  ["Deterministic", 0, 0, 32],
+        "yaw":    ["Deterministic", 0, 0, 360]
+       },
+      "num_child" : ["Deterministic", 4],
+      "child": [
+        {
+          "class":["Random", [1]],
+          "attributes": {
+            "immutable": false,
+            "size_y": ["Deterministic", 28, 0, 32],
+            "size_x": ["Deterministic", 28, 0, 32],
+            "loc_x": ["Deterministic" , 16, 0, 32],
+            "loc_y": ["Deterministic" , 16, 0, 32],
+            "yaw": ["Gaussian", 180, 10, 360]
+          },
+          "num_child" : ["Deterministic", 0],
+          "child": []
+        }
+      ]
+    }
+  ]
+}
