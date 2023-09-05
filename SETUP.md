@@ -1,15 +1,10 @@
-## **Meta-Sim exploration**
-The proposed project systematically investigates the scalability, modularity and applicability of the meta-sim model to increasingly complex applications. In this case, we use the 3D-TYOL testing environment inspired from the TYO-L [1] dataset found [here](https://bop.felk.cvut.cz/datasets/), fully explained in the dissertation, which can also be found in `custom-exp/dissertation` folder. We use an adapted version of Kar et al. [2] code found [here](https://github.com/nv-tlabs/meta-sim).
-
->**Note:** under the ``custom-exp/dissertation/video`` there is the recording `custom-sim-walkthrough.mp4` that contains a video that complements this explanation showing how to run the repository.
-
 ### **Directory tree explanation**
 Below we find the full directory of the currrent folder. ``custom-sim`` contains the full information to run a sample model.
 
 ```py
 .
 └── custom-sim
-    ├── analysis_notebooks
+    ├── analysis
     │   └── figures
     ├── data
     │   ├── datagen
@@ -33,7 +28,7 @@ Below we find the full directory of the currrent folder. ``custom-sim`` contains
     │   └── train
     └── utils
 ```
-- ``custom-sim/analysis_notebooks`` contains the ``.ipynb`` files corresponding to each experimenting section from the dissertation (4.1, and 4.2 for the single-class, and multi-class setting experiments, and Appendix E for the MNIST experiments). All relevant results are loaded there, with their respective descriptions and interpretations.
+- ``custom-sim/analysis`` contains the ``.ipynb`` files corresponding to each experimenting section from the dissertation (4.1, and 4.2 for the single-class, and multi-class setting experiments, and Appendix E for the MNIST experiments). All relevant results are loaded there, with their respective descriptions and interpretations.
 -  The file ``custom-sim/data/renderer/tyolUnity_v2.py`` contains the script that attaches the Unity process to the Python process.
 - ``custom-sim/dissertation`` contains the ``.pdf`` file with the full dissertation.
 - ``custom-sim/environments`` contains all dependencies necessary to create a new python environment that can run Meta-Sim.
@@ -61,7 +56,7 @@ To use the current `custom-exp` director to run a single-class 1-attribute sampl
 2. Now let's generate the target MNIST data, run `python scripts/data/generate_dataset.py --config data/generator/config/mnist_val.json`. And then, run `python scripts/data/generate_dataset.py --config data/generator/config/bigmnist_val.json`.
 
 #### _3D TYO-L generators_
-1. Let us download all relevant scenes from a gcloud storage bucket so we can generate data from there. Let us do this from the `custom-sim/data` folder by running `gsutil -m cp -r gs://meta-sim-bucket .` (mind the final dot). 
+1. Let us download all relevant scenes from a gcloud storage bucket so we can generate data from there. Let us do this from the `custom-sim/data` folder by running `gsutil -m cp -r gs://meta-sim-bucket/datagen .` (mind the final dot). 
 
 >**Note:** Beware that this step will download around 10Gb worth of scenes. Alternatively, you can go [here](https://console.cloud.google.com/storage/browser/meta-sim-bucket) and download the specific files according to the explanation in the following section.
 
@@ -125,19 +120,21 @@ During training, the architecture is learning to rotate a single object 90 degre
 
 We can see the generated images:
 <p align="center">
-<img  src="custom-sim/analysis_notebooks/figures/single/1_attr/4_1_1_3/G2G_images.png" width="1000">
+<img  src="custom-sim/analysis/figures/single/1_attr/4_1_1_3/G2G_images.png" width="1000">
 </p>
 
 We can see that the architecture's MMD loss experiences convergence:
 
 <p align="center">
-<img  src="custom-sim/results/single/1_attr/experiment3/progress/mmd.png" width="400">
+<img  src="custom-sim/analysis/figures/single/1_attr/4_1_1_3/mmd.png" width="400">
 </p>
 
 And the generated mean convergence towards the mean of the target distribution:
 <p align="center">
-<img  src="custom-sim/analysis_notebooks/figures/single/1_attr/4_1_1_3/G2G_yawdist.png">
+<img  src="custom-sim/analysis/figures/single/1_attr/4_1_1_3/G2G_yawdist.png">
 </p>
+
+>**Note:** If you'd like to download results from different experiments shown in the dissertation, please contact Patric Fulop for more.
 
 ### **Bibliography**
 [1] Hodaň, T., Michel, F., Brachmann, E., Kehl, W., Buch, A. G., Kraft, D., Drost, B., Vidal, J., Ihrke, S., Zabulis, X., Sahin, C., Manhardt, F., Tombari, F., Kim, T. K., Matas, J., & Rother, C. (2018). BOP: Benchmark for 6D object pose estimation. Lecture Notes in Computer Science (Including Subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics), 11214 LNCS, 19–35. https://doi.org/10.1007/978-3-030-01249-6_2
