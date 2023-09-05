@@ -37,26 +37,7 @@ And the generated mean convergence towards the mean of the target distribution:
 </p>
 
 
-### **Sample results learning to rotate a single asset**
-During training, the architecture is learning to rotate a single object 90 degrees based on a target dataset whose distribution is centered around 90 degrees. 
-
-We can see the generated images:
-<p align="center">
-<img  src="custom-sim/analysis/figures/single/1_attr/4_1_1_3/G2G_images.png" width="1000">
-</p>
-
-We can see that the architecture's MMD loss experiences convergence:
-
-<p align="center">
-<img  src="custom-sim/analysis/figures/single/1_attr/4_1_1_3/mmd.png" width="400">
-</p>
-
-And the generated mean convergence towards the mean of the target distribution:
-<p align="center">
-<img  src="custom-sim/analysis/figures/single/1_attr/4_1_1_3/G2G_yawdist.png">
-</p>
-
-### Sample results learning to rotate a single asset from a pool of multiple ones
+### **Sample results learning to rotate a single asset from a pool of multiple ones**
 We extended the learning task to for the network to learn more degrees of freedom to match the target image. In this case, the network is learning to rotate and choose a single object from a pool of multiple ones to match the target
 
 In the example below the network learns to select the right asset and rotate it to a 90 degree angle:
