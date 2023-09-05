@@ -1,1 +1,0 @@
-Multiple attributes, 1 reconstruction epoch, with learning rate decay every 2 epochs

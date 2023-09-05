@@ -1,2 +1,0 @@
-python scripts/train/train_tyol_mnist.py --exp experiments/bash_experiments/mnist/mnist_rot_trans_taskloss_8_epochs.yaml
-python scripts/train/train_tyol_mnist.py --exp experiments/bash_experiments/mnist/mnist_rot_trans_MMD_8_epochs.yaml
